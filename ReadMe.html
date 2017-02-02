@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MARS Rover Exercise in C#</title>
+<style>
+body {
+	font-family: helvetica;
+	font-size: 15px;
+}
+h1 {
+	color: #009900;
+	background-color:#eee;
+	padding: 10px 5px;
+}
+.highlighted {
+	color: #666;
+}
+.larger {
+	font-size: 25px;
+}
+table {
+	border-collapse: collapse;
+}
+table, th, td {
+	border: 1px solid black;
+}
+td, th {
+	padding: 3px;
+}
+</style>
+</head>
+<body>
+<h1>MARS Rover Exercise in C#</h1>
+
+<p>
+The Mars Rover simulation is one of the most popular tests spreaded by companies which want to screen candidates with a pratical test. Here's the requirements:
+</p>
+
+<p class="highlighted">
+<span class="larger">&ldquo;</span> The problem specified below requires a solution that receives input, does some processing and then returns some output. You are free to implement any mechanism for feeding input into your solution. You should provide sufficient evidence that your solution is complete by, as a minimum, indicating that it works correctly against the supplied test data. Using a unit testing framework would satisfy these requirements. <span class="larger">&rdquo;</span>
+</p>
+<h2>Specification</h2>
+<p>A squad of robotic rovers are to be landed by NASA on a plateau on Mars.</p>
+
+<p>This plateau, which is curiously rectangular, must be navigated by the rovers so that their on board cameras can get a complete view of the surrounding terrain to send back to Earth. A rover’s position is represented by a combination of an x and y co-ordinates and a letter presenting one of the four cardinal compass points. The plateau is divided up into a grid to simplify navigation.</p>
+
+<p>An example position might be 0, 0, N, which means the rover is in the bottom left corner and facing North.<br />
+Position of 5 5 S would mean that rover is at the top right hand corner prepared to move South.</p>
+
+<p>
+In order to control a rover, NASA sends a simple string of letters. The possible letters are &lsquo;L&rsquo;, &lsquo;R&rsquo; and &lsquo;M&rsquo;. &lsquo;L&rsquo; and &lsquo;R&rsquo; makes the rover spin 90 degrees left or right respectively, without moving from its current spot. &lsquo;M&rsquo; means move forward one grid point, and maintain the same heading.</p>
+
+<p>
+Assume that the square directly North from (x, y) is (x, y+1).<br />
+NB: If a rover goes outside of the boundary of the plateau it is up to the reader of the exercise to make a call on what should happen next.
+</p>
+
+<h3>Input:</h3>
+<p>
+The first line of input is the upper-right coordinates of the plateau, the lower-left coordinates are assumed to be 0,0.</p>
+
+<p>
+The rest of the input is information pertaining to the rovers that have been deployed. Each rover has two lines of input. The first line gives the rover's position, and the second line is a series of instructions telling the rover how to explore the plateau.</p>
+
+<p>
+The position is made up of two integers and a letter separated by spaces, corresponding to the x and y co-ordinates and the rover's orientation.  Each rover will be finished sequentially, which means that the second rover won't start to move until the first one has finished moving.</p>
+
+<h3>Output:</h3>
+<p>
+The output for each rover should be its final co-ordinates and heading.</p>
+
+<p>
+Test Input:<br />
+5 5<br />
+1 2 N<br />
+LMLMLMLMM<br />
+3 3 E<br />
+MMRMMRMRRM
+</p>
+
+<p>
+Expected Output:<br />
+1 3 N<br />
+5 1 E
+</p>
+
+<p><br /><hr />
+In this github project folder I have provider my solution as well as a few test cases however, I have taken my solution one step further by introducing Dependency Injection (DI) pattern even though it is out of scope of the exercise the reader may be interested in finding out further information on their own. Furthermore you will see in the program console app I have provided 2 solutions one with custom DI pattern that is commented out and the other using a popular IoC 3rd party DI pattern called AutoFac. FYI: as of writing this article AutoFac is a 4.5 .NET framework solution so your tarket project must be at least similar and AutoFac can be installed via NuGet Packages Manager.
+</p>
+
+<p>
+Also included in the solution is a test application using NUnit framework. Note some versions of VS may already include a GUI test harness add-on installed so the following set-up will be redundant. Via the NuGet Packages Manager console within Visual Studio I did a search for NUnit and choose NUnit and NUnit Console packages to install into my test project.<br />
+NB: I was using VS2015 Community edition which I had to configure the "Debug" tab of my Test Project to run nunit3-console.exe in order to execute my tests. Do the following manual steps to configure a link to the external test console application:
+<table>
+	<thead>
+		<tr>
+			<th>Setting</th>
+			<th>Value</th>
+			<th>Comment</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Configuration</td>
+			<td>Active (Debug)</td>
+			<td>Can be any debug version</td>
+		</tr>
+		<tr>
+			<td>Start external program:</td>
+			<td>&lt;solution folder&gt;\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe</td>
+			<td>Whatever NUnit or 3rd party package you install whether a console or gui application it will most likely be placed off the packages folder that gets created in the solution folder.</td>
+		</tr>
+		<tr>
+			<td>Commandline arguments</td>
+			<td>&lt;your test project&gt;.dll --wait --inprocess</td>
+			<td>
+				--wait ;prompts you to press any key to continue... otherwise the test app closes on you<br />
+				--inprocess ;attaches your IDE to the test console so you can break into your code by setting breakpoints whereever you want<br />
+				There are a number of other commandline switches you may want to look up in online <a href="https://github.com/nunit/docs/wiki/Console-Command-Line">nunit3 Console Command Line options</a> probably the most useful one is where you can run only a specific set of tests, you can add a [Category("SomeCategory")] attribute to your test method and add a switch as follows --where "cat = SomeCategory"
+			</td>
+		</tr>
+		<tr>
+			<td>Working directory:</td>
+			<td>&lt;test project folder&gt;\bin\Debug</td>
+			<td>Even though this setting isn't too important however you can choose not use the --inprocess option and the result is saved to an XML file in the working directory and is named by default as TestResult.xml</td>
+		</tr>
+	</tbody>
+</table>
+
+</p>
+</body>
+</html>
