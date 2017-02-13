@@ -96,9 +96,17 @@ button {
     width: 120px;
     display: inline-block
 }
-.highlighted {
-	color: #666;
+	
+blockquote { 
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: #f3f3f3;
+    padding: 5px;
 }
+	
 .larger {
 	font-size: 25px;
 }
@@ -120,9 +128,13 @@ td, th {
 The Mars Rover simulation is one of the most popular tests spreaded by companies which want to screen candidates with a pratical test. Here's the requirements:
 </p>
 
-<p class="highlighted">
-<span class="larger">&ldquo;</span> The problem specified below requires a solution that receives input, does some processing and then returns some output. You are free to implement any mechanism for feeding input into your solution. You should provide sufficient evidence that your solution is complete by, as a minimum, indicating that it works correctly against the supplied test data. Using a unit testing framework would satisfy these requirements. <span class="larger">&rdquo;</span>
-</p>
+<blockquote>
+<span class="larger">&ldquo;</span> The problem specified below requires a solution that receives input, does some processing and 
+	then returns some output. You are free to implement any mechanism for feeding input into your solution. 
+	You should provide sufficient evidence that your solution is complete by, as a minimum, indicating that it 
+	works correctly against the supplied test data. Using a unit testing framework would satisfy these requirements. 
+	<span class="larger">&rdquo;</span>
+</blockquote>
 <h2>Specification</h2>
 <p>A squad of robotic rovers are to be landed by NASA on a plateau on Mars.</p>
 
@@ -173,8 +185,10 @@ Expected Output:<br />
 In this github project folder I have provider my solution as well as a few test cases however, 
 I have taken my solution one step further by introducing Dependency Injection (DI) pattern even though it is 
 out of scope of the exercise the reader may be interested in finding out further information on their own. 
-Furthermore you will see in the program console app I have provided 2 solutions one with custom DI pattern 
-that is commented out and the other using a popular IoC 3rd party DI pattern called AutoFac. 
+Furthermore you will see in the program console app in the program.cs Main method I have provided 2 independent 
+solutions one with custom DI pattern (that is commented out) and the other using a popular IoC 3rd party DI pattern called AutoFac.
+
+<block
 FYI: as of writing this article AutoFac is a 4.5 .NET framework solution so your tarket project must be at 
 least similar and AutoFac can be installed via NuGet Packages Manager.
 </p>
